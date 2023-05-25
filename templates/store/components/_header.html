@@ -1,0 +1,193 @@
+{% load static %}
+<style>
+	::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+  text-align: center;
+   font-size: 1.5rem;
+}
+.cart-icon {
+  position: relative;
+  cursor: pointer;
+}
+.cart-items {
+  position: absolute;
+  top: -12px;
+  right: -10px;
+  background: var(--primaryColor);
+  padding: 0 3px;
+  border-radius: 30%;
+  color: white;
+  font-size: 30px;
+}
+</style>
+<!-- Header -->
+<div class="allcontain">
+	<div class="header">
+			<ul class="socialicon">
+				<li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+				<li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+				<li><a href="#"><i class="fa-brands fa-google-plus"></i></a></li>
+				<li><a href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+
+			</ul>
+			<ul class="givusacall">
+				<li>Give us a call : +66666666 </li>
+
+			</ul>
+			<ul class="logreg">
+				<li style="margin-right:6px;"><a href="{% url 'basket:basket_summary' %}">My cart</a><i class="fa-solid fa-cart-flatbed-suitcase"></i> </li>
+
+				<li style="margin-right:6px;"><a href="{% url 'basket:basket_checkout' %}">Checkout </a><i class="fa-solid fa-credit-card"></i> </li>
+
+				<li style="margin-right:6px;"><a href="{% url 'account:dashboard' %}">Account </a> <i class="fa-solid fa-address-card"></i></li>
+				<li><a href="{% url 'account:login' %}">Login </a> </li>
+				<li><a href="{% url 'account:register' %}"><span class="register">Register</span></a></li>
+			</ul>
+	</div>
+	<!-- Navbar Up -->
+	<nav class="topnavbar navbar-default topnav">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed toggle-costume" data-toggle="collapse" data-target="#upmenu" aria-expanded="false">
+					<span class="sr-only"> Toggle navigaion</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand logo" href="/"><img src="{% static 'store/image/logo1.png' %}" alt="logo"></a>
+			</div>
+		</div>
+		<div class="collapse navbar-collapse" id="upmenu">
+			<ul class="nav navbar-nav" id="navbarontop">
+				<li class="active"><a href="/">HOME</a> </li>
+					<li class="active"><a href="{% url 'store:shop' %}">SHOP</a> </li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle"	data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CATEGORIES <span class="caret"></span></a>
+					<ul class="dropdown-menu dropdowncostume">
+
+						{% for category in categories %}
+						<li><a href="">{{ category.name|title }}</a></li>
+{% endfor %}
+					</ul>
+				</li>
+				<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DEALERS <span class="caret"></span></a>
+						<ul class="dropdown-menu dropdowncostume">
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="3">3</a></li>
+						</ul>
+				</li>
+
+				<li>
+					<a href="contact.html">CONTACT</a>
+
+				</li>
+				<button><span class="postnewcar">POST NEW CAR</span></button>
+			</ul>
+		</div>
+	</nav>
+</div>
+<!--_______________________________________ Carousel__________________________________ -->
+<div class="allcontain">
+	<div id="carousel-up" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner " role="listbox">
+			<div class="item active">
+				<img src="{% static 'store/image/oldcar.jpg' %}" alt="oldcar">
+				<div class="carousel-caption">
+					<h2>Porsche 356</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur ,<br>
+						sed do eiusmod tempor incididunt ut labore </p>
+				</div>
+			</div>
+			<div class="item">
+				<img src="{% static 'store/image/porche.jpg' %}" alt="porche">
+				<div class="carousel-caption">
+					<h2>Porche</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur ,<br>
+						sed do eiusmod tempor incididunt ut labore </p>
+				</div>
+			</div>
+			<div class="item">
+				<img src="{% static 'store/image/benz.jpg' %}" alt="benz">
+				<div class="carousel-caption">
+					<h2>Car</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur ,<br>
+						sed do eiusmod tempor incididunt ut labore </p>
+				</div>
+			</div>
+		</div>
+		<nav class="navbar navbar-default midle-nav">
+			<div class="navbar-header">
+
+				<button type="button" class="navbar-toggle collapsed textcostume btn-outline" data-toggle="collapse" data-target="#navbarmidle" aria-expanded="false">
+						<h1>SEARCH TEXT</h1>
+
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+
+
+		</div>
+			<div class="collapse navbar-collapse" id="navbarmidle">
+				<div class="searchtxt">
+					<h1>SEARCH TEXT</h1>
+
+				</div>
+				<button class="searchbutton"><span class="glyphicon glyphicon-search "></span></button>
+				<form class="navbar-form navbar-left searchformmargin" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control searchform" placeholder="Enter Keyword">
+					</div>
+				</form>
+				<ul class="nav navbar-nav navbarborder">
+					<li class="li-category">
+						<a class="btn  dropdown-toggle btn-costume"  id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Category<span class="glyphicon glyphicon-chevron-down downicon"></span></a>
+						<ul class="dropdown-menu" id="mydd">
+							<li><a href="#">Epic</a></li>
+							<li><a href="#">Old</a></li>
+							<li><a href="#">New</a></li>
+						</ul>
+					</li>
+					<li class="li-minyear"><a class="btn  dropdown-toggle btn-costume"  id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Min Year <span class="glyphicon glyphicon-chevron-down downicon"></span></a>
+						<ul class="dropdown-menu" id="mydd2">
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+						</ul>
+					</li>
+					<li class="li-maxyear"><a class="btn dropdown-toggle btn-costume"  id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Max Year <span class="glyphicon glyphicon-chevron-down downicon"></span></a>
+						<ul class="dropdown-menu" id="mydd3">
+							<li><a href="#">1900</a></li>
+							<li><a href="#">2000</a></li>
+							<li><a href="#">2016</a></li>
+						</ul>
+					</li>
+					<li class="li-slideprice">
+						<p>
+							<input class="priceslider" type="text" id="amount" readonly="readonly" placeholder="Price" style="border:1px solid white; height:42px;">
+						</p>
+						 <li class="cart-icon"><a href="{% url 'basket:basket_summary' %}">
+					{% with total_qty=basket|length %}
+					<div id="basket-qty" class="cart-items">
+					{% if total_qty > 0 %}
+				   {{ total_qty }}
+					{% else %}
+					0
+					{% endif %}
+					</div>
+					{% endwith %}
+					<i class="fas fa-cart-plus"></i></a> </li>
+							<div id="slider-range"></div>
+
+					</li>
+
+				</ul>
+
+			</div>
+		</nav>
+	</div>
+</div>

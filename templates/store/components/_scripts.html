@@ -1,0 +1,47 @@
+{% load static %}
+<script type="text/javascript" src="{% static 'store/source/bootstrap-3.3.6-dist/js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'store/source/js/isotope.js' %}"></script>
+<script type="text/javascript" src="{% static 'store/source/js/myscript.js' %}"></script>
+<script type="text/javascript" src="{% static 'store/source/bootstrap-3.3.6-dist/js/jquery.1.11.js' %}"></script>
+<script type="text/javascript" src="{% static 'store/source/bootstrap-3.3.6-dist/js/bootstrap.js' %}"></script>
+<script>
+    $(document).on('click', '#delete-button',  function(e){
+    e.preventDefault();
+    $.ajax({
+    type: 'POST',
+    url: '{% url 'basket:basket_delete' %},
+    data: {
+    productid: $(this).data('index'),
+    csrfmiddlewaretoken: '{{csrf_token}}',
+    action: 'post',
+    },
+    success: function(json){
+    alert('ok');
+    },
+    error: function(xhr, errmsg, err){
+    alert('error');
+    }
+    });
+    });
+
+     $(document).on('click', '#add-button',  function(e){
+    e.preventDefault();
+    $.ajax({
+    type: 'POST',
+    url: '{% url 'basket:basket_add' %},
+    data: {
+    productid: $('#add-button').val(),
+    productqty: $('#quantity-select option:selected').text(),
+    csrfmiddlewaretoken: '{{csrf_token}}',
+    action: 'post',
+    },
+    success: function(json){
+    document.getElementById('basket-qty').innerHTML = json.basket_qty;
+    },
+    error: function(xhr, errmsg, err){
+    alert('error');
+    }
+    });
+    });
+
+</script>

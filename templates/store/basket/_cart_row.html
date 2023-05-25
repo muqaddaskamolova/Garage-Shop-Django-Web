@@ -1,0 +1,35 @@
+{% load static %}
+<div class="cart-row">
+<div style="flex:2">
+    <img class="row-image" src="{{ product.image}}" alt="Photo"></div>
+    <div style="flex:2"><p>Macleran{{ product.title }}</p></div>
+    <div style="flex:1"><p>$150{{ product.price }}</p></div>
+    <div style="flex:1"><p class="quantity">{{ product.quantity }}</p>
+
+        <div class="quantity">
+            <form action="">
+                        <label for="quantity-select" style="color:blue;">Choose a quantity:</label>
+            <select name="quantity" id="quantity-select">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+</select>
+            </form>
+
+            <button data-index="{{product.id}}" type="button" class="btn-success" style="border-radius:10px; padding:5px;margin-right:3px; margin-bottom:3px;">
+            Update
+            </button>
+
+            <button type="button" class="btn-danger" data-index="{{product.id}}" style="border-radius:10px; padding:5px;margin-right:3px;margin-bottom:3px;">
+               Delete
+            </button>
+        </div>
+
+
+    </div>
+
+    <div id="subtotal" style="flex:1;margin-top:3px;">$150{{ basket.get_total_price }}</div>
+</div>
