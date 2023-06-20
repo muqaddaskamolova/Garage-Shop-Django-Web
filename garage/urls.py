@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from .import settings
 from django.conf.urls.static import static
+import debug_toolbar
+from .settings import base
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,10 +27,11 @@ urlpatterns = [
     path('account/', include('account.urls', namespace='account')),
     path('payment/', include('payment.urls', namespace='payment')),
     path('orders/', include('orders.urls', namespace='orders')),
+    path('__debug__/', include(debug_toolbar.urls)),
 ]
 
 
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if base.DEBUG:
+    urlpatterns += static(base.STATIC_URL, document_root=base.STATIC_ROOT)
+    urlpatterns += static(base.MEDIA_URL, document_root=base.MEDIA_ROOT)
 

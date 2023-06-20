@@ -3,6 +3,7 @@ from django.db import models
 from django.urls import reverse
 
 from garage import settings
+from garage.settings import base
 
 
 # Create your models here.
@@ -46,7 +47,7 @@ class Product(models.Model):
     STATUS = (('Published', 'Published Product'), ('Draft', 'Draft Product'))
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Category',
                                  related_name='product')
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE,
+    created_by = models.ForeignKey(base.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.CASCADE,
                                    related_name='product_creator')
     name = models.CharField(max_length=255, unique=True)
     author = models.CharField(max_length=255, default='admin')

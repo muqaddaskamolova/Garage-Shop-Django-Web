@@ -8,7 +8,7 @@ def categories(request):
 
 
 def all_products(request):
-    products = Product.products.all()
+    products = Product.products.prefetch_related("product_image").filter(is_active=True)
     return render(request, 'store/index.html', {'products': products})
 
 
@@ -17,10 +17,10 @@ def product_detail(request, slug):
     return render(request, 'store/products/detail.html', {'product': product})
 
 
-def category_list(request, category_slug):
+def category_list(request, category_slug=None):
     category = get_object_or_404(Category, slug=category_slug)
     categories = Category.objects.all()
-    products = Product.objects.filter(category=category)
+    products = Product.objects.filter(category__in=Category.objects.get(name=category_slug).get_descendants(include_self=True))
 
     context = {
         'title': f"Category: {category.title}",
