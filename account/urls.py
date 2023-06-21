@@ -37,4 +37,9 @@ urlpatterns = [
     path('profile/delete_user/', delete_user, name='delete_user'),
     path('profile/delete_confirm/', TemplateView.as_view(template_name="account/user/delete_confirm.html"),
          name='delete_confirmation'),
+    path("addresses/", view_address, name="addresses"),
+    path("add_address/", add_address, name="add_address"),
+    path("addresses/edit/<slug:id>/", edit_address, name="edit_address"),
+    path("addresses/delete/<slug:id>/", delete_address, name="delete_address"),
+    path("addresses/set_default/<slug:id>/", set_default, name="set_default"),
 ]

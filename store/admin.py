@@ -3,9 +3,16 @@ from .models import *
 
 
 # Register your models here.
+class ProductImageInline(admin.TabularInline):
+    model = ProductImage
+
+
 class ProductAdmin(admin.ModelAdmin):
     # form = ProductAdminForm
     # sets values for how the admin site lists your products
+    inlines = [
+        ProductImageInline,
+    ]
     list_display = [
         'pk', 'name', 'slug', 'price', 'old_price', 'created_at', 'updated_at', 'color', 'material',
         'status', 'quantity', 'in_stock', ]
