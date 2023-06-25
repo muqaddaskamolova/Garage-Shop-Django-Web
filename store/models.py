@@ -77,6 +77,7 @@ class Product(models.Model):
     condition = models.CharField(choices=CONDITION, max_length=100)
     status = models.CharField(choices=STATUS, max_length=200)
     info = models.TextField(default='Information coming soon', verbose_name='Additional Information')
+    users_wishlist = models.ManyToManyField(base.AUTH_USER_MODEL, related_name='Wishlist', blank=True)
     objects = models.Manager()
     products = ProductManager()
 

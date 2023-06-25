@@ -18,10 +18,11 @@ urlpatterns = [
     path('register/', account_register, name='register'),
     path('activate/<slug:uidb64>/<slug:token>/', account_activate, name='activate'),
     # Reset password
-    path('password_reset/', auth_views.PasswordResetView.as_view(template_name="account/password_reset/password_reset_form.html",
-                                                                 success_url='password_reset_email_confirm',
-                                                                 email_template_name='account/password_reset/password_reset_email.html',
-                                                                 form_class=PwdResetForm), name='pwdreset'),
+    path('password_reset/',
+         auth_views.PasswordResetView.as_view(template_name="account/password_reset/password_reset_form.html",
+                                              success_url='password_reset_email_confirm',
+                                              email_template_name='account/password_reset/password_reset_email.html',
+                                              form_class=PwdResetForm), name='pwdreset'),
     path('password_reset_confirm/<uidb64>/<token>',
          auth_views.PasswordResetConfirmView.as_view(template_name='account/password_reset/password_reset_confirm.html',
                                                      success_url='/account/password_reset_complete/',
@@ -30,7 +31,8 @@ urlpatterns = [
     path('password_reset/password_reset_email_confirm/',
          TemplateView.as_view(template_name="account/password_reset/reset_status.html"), name='password_reset_done'),
     path('password_reset_complete/',
-         TemplateView.as_view(template_name="account/password_reset/reset_status.html"), name='password_reset_complete'),
+         TemplateView.as_view(template_name="account/password_reset/reset_status.html"),
+         name='password_reset_complete'),
     # User dashboard
     path('dashboard/', dashboard, name='dashboard'),
     path('profile/edit/', edit_details, name='edit_details'),
@@ -42,4 +44,7 @@ urlpatterns = [
     path("addresses/edit/<slug:id>/", edit_address, name="edit_address"),
     path("addresses/delete/<slug:id>/", delete_address, name="delete_address"),
     path("addresses/set_default/<slug:id>/", set_default, name="set_default"),
+    # Wish List
+    path("wishlist", wishlist, name="wishlist"),
+    path("wishlist/add_to_wishlist/<int:id>", add_to_wishlist, name="user_wishlist"),
 ]

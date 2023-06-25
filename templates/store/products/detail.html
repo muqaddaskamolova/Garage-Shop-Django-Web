@@ -9,10 +9,17 @@
 
 <!-- Shop Detail Start -->
 <div class="container-fluid pb-5 mb-5">
+    {% if messages %}
+<div class="alert alert-warning alert-{{ message.tags }}" role="alert">
+{% for message in messages  %}
+  {{message|safe}} - <a href="{% url 'account:wishlist' %}" class="alert-link">Your Wishlist</a>.
+{% endfor %}
+</div>
+{% endif %}
     <div class="row px-xl-5">
-<h1 class="text-primary text-center">Shopping Cart</h1>
+        <h1 class="text-primary text-center">Shopping Cart</h1>
 
-        <div  class="col-lg-5 mb-30">
+        <div class="col-lg-5 mb-30">
 
             <div id="product-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
@@ -56,7 +63,8 @@
                 </div>
                 <h3 class="font-weight-semi-bold mb-4" style="color:blue;">Price:{{ product.price }}$</h3>
                 <p class="mb-4">{{ product.description }}</p>
-                <p class="d-flex"><strong class="text-dark mr-3" style="color:blue;">Material:</strong>{{ product.material }}
+                <p class="d-flex"><strong class="text-dark mr-3" style="color:blue;">Material:</strong>{{
+                    product.material }}
                 </p>
                 <div class="d-flex mb-3">
                     <strong class="text-dark mr-3" style="color:blue;">Sizes:</strong>
@@ -84,7 +92,7 @@
                     </form>
                 </div>
                 <div class="d-flex mb-4">
-                    <strong class="text-dark mr-3" style="color:blue;" >Colors:</strong>
+                    <strong class="text-dark mr-3" style="color:blue;">Colors:</strong>
                     <form style="display:flex;">
                         <div class="custom-control custom-radio custom-control-inline">
                             <input type="radio" class="custom-control-input" id="color-1" name="color">
@@ -110,14 +118,14 @@
                     <form action="">
                         <label for="quantity-select" style="color:blue;">Choose a quantity:</label>
 
-<select name="quantity" id="quantity-select">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-</select>
+                        <select name="quantity" id="quantity-select">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
 
                     </form>
                 </div>
@@ -138,9 +146,13 @@
                         </div>
                     </div>
                     <br>
-                    <button type="button" class="btn btn-primary" id="add-button" value="{{product.id}}"><i class="fa fa-shopping-cart mr-1"></i> Add To
+                    <button type="button" class="btn btn-primary" id="add-button" value="{{product.id}}"><i
+                            class="fa fa-shopping-cart mr-1"></i> Add To
                         Cart
                     </button>
+
+                     <a href="{% url 'account:user_wishlist' product.id  %}" class="btn btn-primary " role="button"><i style="margin-right:2px;" class="fa fa-heartbeat" aria-hidden="true"></i>Add to Wish List</a>
+
                 </div>
                 <div class="d-flex pt-2">
                     <strong class="text-dark mr-2">Share on:</strong>
@@ -355,6 +367,9 @@
     }
     });
     })
+
+
+
 
 </script>
 {% endblock content %}
